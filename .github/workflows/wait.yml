@@ -1,0 +1,16 @@
+---
+name: Wait
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  merge_group:
+
+jobs:
+  wait:
+    name: wait
+    runs-on: ubuntu-22.04
+
+    steps:
+      - run: sleep 60
