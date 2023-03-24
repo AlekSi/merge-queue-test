@@ -5,16 +5,18 @@ pull_request_rules:
   - name: "Enqueue approved PRs"
     conditions:
       # those rules are implicit for the queue action:
-      # - "#commits-behind > 0"
-      # - "-closed"
+      # - "-draft"
+      # - "-mergify-configuration-changed"
+      # - check-success=XXX
+      - "-closed"
       - "-conflict"
-      - "-draft"
       - "-locked"
       - "-merged"
       - "base = main"
       - "label != 'no ci'"
     actions:
       queue:
+        method: squash
 
 queue_rules:
   - name: default
