@@ -1,0 +1,21 @@
+---
+# see https://docs.mergify.com/
+
+pull_request_rules:
+  - name: "Enqueue approved PRs"
+    conditions:
+      # those rules are implicit for the queue action:
+      # - "#commits-behind > 0"
+      # - "-closed"
+      - "-conflict"
+      - "-draft"
+      - "-locked"
+      - "-merged"
+      - "base = main"
+      - "label != 'no ci'"
+    actions:
+      queue:
+
+queue_rules:
+  - name: default
+    merge_conditions: # we rely on GitHub's branch protection rules

@@ -5,7 +5,6 @@ on:
     branches:
       - main
   pull_request:
-  merge_group:
 
 jobs:
   wait:
@@ -13,4 +12,4 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - run: sleep 60
+      - run: sleep 10
