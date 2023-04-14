@@ -17,6 +17,14 @@ pull_request_rules:
     actions:
       queue:
         method: squash
+        # commit_message_template: "{{ body | get_section('## Commit Message') }}"
+
+  - name: "Add comment"
+    conditions:
+      - "label = 'test'"
+    actions:
+      comment:
+        message: "Test comment"
 
 queue_rules:
   - name: default
