@@ -27,10 +27,20 @@ pull_request_rules:
         message: "Test comment"
 
   - name: "Assign PRs"
-    conditions: []
+    conditions:
+      - "-closed"
+      - "#assignee = 0"
     actions:
       assign:
         add_users: ["{{ author }}"]
+
+  - name: "Unassign PRs"
+    conditions:
+      - "closed"
+      - "#assignee > 0"
+    actions:
+      assign:
+        remove_users: ["{{ assignee }}"]
 
 queue_rules:
   - name: default
