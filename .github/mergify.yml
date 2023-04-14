@@ -17,6 +17,30 @@ pull_request_rules:
     actions:
       queue:
         method: squash
+        # commit_message_template: "{{ body | get_section('## Commit Message') }}"
+
+  - name: "Add comment"
+    conditions:
+      - "label = 'test'"
+    actions:
+      comment:
+        message: "Test comment"
+
+  - name: "Assign PRs"
+    conditions:
+      - "-closed"
+      - "#assignee = 0"
+    actions:
+      assign:
+        add_users: ["{{ author }}"]
+
+  - name: "Unassign PRs"
+    conditions:
+      - "closed"
+      - "#assignee > 0"
+    actions:
+      assign:
+        remove_users: {{ assignee }}
 
 queue_rules:
   - name: default
