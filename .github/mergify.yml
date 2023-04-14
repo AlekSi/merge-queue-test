@@ -26,6 +26,12 @@ pull_request_rules:
       comment:
         message: "Test comment"
 
+  - name: "Assign PRs"
+    conditions:
+    actions:
+      assign:
+        add_users: ["{{ author }}"]
+
 queue_rules:
   - name: default
     merge_conditions: [] # we rely on GitHub's branch protection rules
